@@ -4,4 +4,11 @@ class Gameboard {
       .fill(10)
       .map(() => Array(10).fill(0));
   }
+
+  placeShip(coordinates, name) {
+    coordinates.forEach((co) => {
+      const [x, y] = co;
+      this.grid[x][y] = name;
+    });
+  }
 }
