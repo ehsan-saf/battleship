@@ -1,40 +1,43 @@
 import Gameboard from "../src/game/gameboard";
 import Ship from "../src/game/ship";
 
-const carrier = new Ship(5);
-const battleShip = new Ship(4);
-const destroyer = new Ship(3);
-const submarine = new Ship(3);
-const patrolBoat = new Ship(2);
-
-const ships = {
-  c: carrier,
-  b: battleShip,
-  d: destroyer,
-  s: submarine,
-  p: patrolBoat,
-};
+function exampleShips() {
+  const carrier = new Ship(5);
+  const battleShip = new Ship(4);
+  const destroyer = new Ship(3);
+  const submarine = new Ship(3);
+  const patrolBoat = new Ship(2);
+  const ships = {
+    c: carrier,
+    b: battleShip,
+    d: destroyer,
+    s: submarine,
+    p: patrolBoat,
+  };
+  return ships;
+}
 
 test("all Sunk returns false if there are any remaining ships on the grid", () => {
   const board = new Gameboard();
-  board.ships = ships;
-  for (let i = 1; i <= 5; i += 1) ships.c.hit();
-  for (let i = 1; i <= 4; i += 1) ships.b.hit();
-  for (let i = 1; i <= 3; i += 1) ships.d.hit();
-  for (let i = 1; i <= 3; i += 1) ships.s.hit();
+  board.ships = exampleShips();
+  for (let i = 1; i <= 5; i += 1) board.ships.c.hit();
+  for (let i = 1; i <= 4; i += 1) board.ships.b.hit();
+  for (let i = 1; i <= 3; i += 1) board.ships.d.hit();
+  for (let i = 1; i <= 3; i += 1) board.ships.s.hit();
   const actual = board.allSunk();
   expect(actual).toBe(false);
 });
 
 test("all Sunk returns true if every ship is sunk", () => {
   const board = new Gameboard();
-  board.ships = ships;
-  for (let i = 1; i <= 5; i += 1) ships.c.hit();
-  for (let i = 1; i <= 4; i += 1) ships.b.hit();
-  for (let i = 1; i <= 3; i += 1) ships.d.hit();
-  for (let i = 1; i <= 3; i += 1) ships.s.hit();
+  board.ships = exampleShips();
+  for (let i = 1; i <= 5; i += 1) board.ships.c.hit();
+  for (let i = 1; i <= 4; i += 1) board.ships.b.hit();
+  for (let i = 1; i <= 3; i += 1) board.ships.d.hit();
+  for (let i = 1; i <= 3; i += 1) board.ships.s.hit();
+  for (let i = 1; i <= 2; i += 1) board.ships.p.hit();
   const actual = board.allSunk();
-  expect(actual).toBe(false);
+  expect(actual).toBe(true);
 });
 
 function fillBoard(board) {

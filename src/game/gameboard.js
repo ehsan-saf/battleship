@@ -3,7 +3,8 @@ export default class Gameboard {
     this.grid = Array(10)
       .fill(10)
       .map(() => Array(10).fill(0));
-    this.ships = { c: null, b: null, d: null, s: null, p: null };
+
+    this.ships = {};
   }
 
   placeShip(coordinates, name) {
