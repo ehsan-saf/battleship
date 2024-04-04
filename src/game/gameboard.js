@@ -1,4 +1,4 @@
-class Gameboard {
+export default class Gameboard {
   constructor() {
     this.grid = Array(10)
       .fill(10)
@@ -19,5 +19,10 @@ class Gameboard {
     } else {
       this.ships[this.grid[x][y]].hit();
     }
+  }
+
+  allSunk() {
+    const ships = Object.values(this.ships);
+    return ships.every((sh) => sh.isSunk());
   }
 }
