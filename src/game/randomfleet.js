@@ -34,7 +34,7 @@ class RandomFleet {
   }
 
   placeRandom(length, name) {
-    const getRandom = () => Math.floor(Math.random() * 9);
+    const getRandom = () => Math.floor(Math.random() * 10);
     const isVertical = Math.floor(Math.random() * 2) === 1;
     let ship = [];
     let x = getRandom();
