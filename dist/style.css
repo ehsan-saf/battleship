@@ -1,0 +1,47 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+:root {
+  --grid-border: #545863;
+  --cell-bg: #98dfea;
+  --target-glow: rgb(0, 17, 255);
+}
+
+.board {
+  width: 400px;
+  height: 400px;
+
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+
+  border: 3px solid var(--grid-border);
+  margin: 0 auto;
+}
+
+.cell {
+  background-color: var(--cell-bg);
+  outline: 2px solid var(--grid-border);
+  cursor: url("./icon/missile-icon.png"), auto;
+}
+
+.target-cell {
+  z-index: 1;
+  animation: glow 0.21s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 4px -4px var(--target-glow);
+  }
+  to {
+    box-shadow: 0 0 4px 4px var(--target-glow);
+  }
+}
