@@ -1,5 +1,7 @@
 let lockedSound = null;
 
+const boards = document.querySelector(".boards");
+
 function createCell() {
   const cell = document.createElement("div");
   cell.classList.add("cell");
@@ -29,9 +31,10 @@ function createGrid(gridID) {
       grid.appendChild(cell);
     }
   }
-  document.body.appendChild(grid);
+  boards.appendChild(grid);
 }
 
-export default function initGrid(gridID) {
-  createGrid(gridID);
+export default function initGrid() {
+  createGrid(1);
+  createGrid(2);
 }
