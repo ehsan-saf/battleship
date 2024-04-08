@@ -18,6 +18,17 @@ function createCell() {
   return cell;
 }
 
+function createGridContainer(gridID) {
+  const gridName = document.createElement("div");
+  const playerName = document.createElement("p");
+  gridName.classList.add("grid-name");
+  playerName.classList.add("player-name");
+  playerName.id = `name${gridID}`;
+  playerName.textContent = `Player ${gridID}`;
+  gridName.appendChild(playerName);
+  return gridName;
+}
+
 function createGrid(gridID) {
   lockedSound = new Audio("./sound/target-locked.mp3");
   const grid = document.createElement("div");
@@ -31,7 +42,9 @@ function createGrid(gridID) {
       grid.appendChild(cell);
     }
   }
-  boards.appendChild(grid);
+  const gridNameContainer = createGridContainer(gridID);
+  gridNameContainer.appendChild(grid);
+  boards.appendChild(gridNameContainer);
 }
 
 export default function initGrid() {

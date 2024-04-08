@@ -9,8 +9,8 @@
 }
 
 :root {
-  --grid-border: #545863;
-  --cell-bg: #f4feff;
+  --grid-border: #466fe0;
+  --cell-bg: #faffff;
   --target-glow: rgb(71, 83, 255);
 }
 
@@ -32,6 +32,17 @@ body {
   width: 100%;
 }
 
+.grid-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.player-name {
+  font-size: 1.4rem;
+}
+
 .board {
   width: 400px;
   height: 400px;
@@ -47,7 +58,7 @@ body {
 .cell {
   background-color: var(--cell-bg);
   outline: 1px solid var(--grid-border);
-  cursor: url("./icon/missile-icon.png"), auto;
+  cursor: url("./icon/target-icon.png"), auto;
 }
 
 .target-cell {
