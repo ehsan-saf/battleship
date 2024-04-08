@@ -14,6 +14,10 @@
   --target-glow: rgb(71, 83, 255);
 }
 
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 /* ---------------- Main Section ------------------- */
 
 .main {
@@ -56,6 +60,88 @@
     box-shadow: 0 0 3px -3px var(--target-glow);
   }
   to {
+    border-radius: 3px;
     box-shadow: 0 0 3px 3px var(--target-glow);
   }
+}
+
+/* --------- Game Start Menu ------------  */
+
+.input-group {
+  position: absolute;
+  left: calc(50% - 140px);
+  top: 15%;
+
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 240px;
+  justify-content: center;
+  gap: 20px;
+
+  width: 280px;
+  height: 300px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  border-radius: 10px;
+  box-shadow:
+    rgba(0, 0, 0, 0.16) 0px 3px 6px,
+    rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.input-group input[type="text"] {
+  outline: 1px solid rgb(149, 149, 149);
+  border: none;
+  border-radius: 5px;
+
+  padding: 5px;
+
+  transition: outline 0.2s;
+}
+
+.input-group input[type="text"]:focus {
+  outline: 1px solid blue;
+}
+
+.input-group label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.button-group {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  gap: 10px;
+}
+
+.menu-button {
+  border-radius: 7px;
+  border: none;
+
+  width: 190px;
+
+  padding: 8px 20px;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.play-button {
+  background-color: #5adbb5;
+}
+
+.computer-button {
+  background-color: #55c2da;
+}
+
+.play-button:hover {
+  background-color: #4ebd9b;
+}
+
+.computer-button:hover {
+  background-color: #459caf;
 }
