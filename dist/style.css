@@ -18,11 +18,30 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.disable {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 /* ---------------- Main Section ------------------- */
 
 .main {
   display: flex;
-  margin-top: 5%;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+
+  margin-top: 2%;
+}
+
+/* ------ Message ------- */
+
+.message {
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.882);
+  background-color: rgb(46, 94, 218);
+  font-size: 18px;
+  padding: 10px;
 }
 
 /* --------------- Game Boards -------------- */
@@ -53,12 +72,13 @@ body {
 
   border: 3px solid var(--grid-border);
   margin: 0 auto;
+
+  cursor: url("./icon/target-icon.png"), auto;
 }
 
 .cell {
   background-color: var(--cell-bg);
   outline: 1px solid var(--grid-border);
-  cursor: url("./icon/target-icon.png"), auto;
 }
 
 .target-cell {
@@ -81,7 +101,7 @@ body {
 .input-group {
   position: absolute;
   left: calc(50% - 140px);
-  top: 15%;
+  top: 20%;
 
   display: grid;
   grid-template-rows: repeat(2, 1fr);
@@ -98,6 +118,30 @@ body {
   box-shadow:
     rgba(0, 0, 0, 0.16) 0px 3px 6px,
     rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.hide-animation {
+  opacity: 0;
+  animation: hide 2s;
+}
+
+.show-animation {
+  opacity: 1;
+  animation: hide 2s reverse;
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  99% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .input-group input[type="text"] {
