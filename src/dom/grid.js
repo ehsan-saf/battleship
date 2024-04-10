@@ -1,6 +1,6 @@
 let lockedSound = null;
 
-const boards = document.querySelector(".boards");
+const boards = document.querySelector(".grids");
 
 const grids = [];
 
@@ -34,9 +34,9 @@ function createGridContainer(gridID) {
 function createGrid(gridID) {
   lockedSound = new Audio("./sound/target-locked.mp3");
   const grid = document.createElement("div");
-  grid.classList.add("board");
+  grid.classList.add("grid");
   grids.push(grid);
-  grid.id = gridID;
+  grid.id = `grid${gridID}`;
   for (let y = 0; y < 10; y += 1) {
     for (let x = 0; x < 10; x += 1) {
       const cell = createCell();
@@ -53,6 +53,27 @@ function createGrid(gridID) {
 export function initGrids() {
   createGrid(1);
   createGrid(2);
+}
+
+export function printGrid(array, gridID) {
+  const grid = document.getElementById(`grid${gridID}`);
+  const cells = grid.querySelectorAll(".cell");
+  cells.forEach((cell) => {
+    cell.classList.remove("ship");
+  });
+  let x = 0;
+  let y = 0;
+  cells.forEach((cell) => {
+    console.log(`${x}:${y}`);
+    if (array[x][y] !== 0) {
+      cell.classList.add("ship");
+    }
+    y += 1;
+    if (y === 10) {
+      y = 0;
+      x += 1;
+    }
+  });
 }
 
 export function toggleGrids() {

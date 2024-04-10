@@ -7,7 +7,7 @@ class Player {
     this.enemyBoard.receiveAttack(x, y);
   }
 
-  hasLost() {
+  hasEnemyLost() {
     return this.enemyBoard.allSunk();
   }
 }

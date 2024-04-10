@@ -1,7 +1,7 @@
-import Gameboard from "./gameboard.js";
-import Ship from "./ship.js";
+import Gameboard from "./gameboard";
+import Ship from "./ship";
 
-class RandomFleet {
+export default class RandomFleet {
   constructor() {
     this.board = new Gameboard();
     this.occupied = new Set();
