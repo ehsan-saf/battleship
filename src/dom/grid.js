@@ -2,6 +2,8 @@ let lockedSound = null;
 
 const boards = document.querySelector(".boards");
 
+const grids = [];
+
 function createCell() {
   const cell = document.createElement("div");
   cell.classList.add("cell");
@@ -34,6 +36,7 @@ function createGrid(gridID) {
   const grid = document.createElement("div");
   grid.classList.add("board");
   grid.classList.add("disable");
+  grids.push(grid);
   grid.id = gridID;
   for (let y = 0; y < 10; y += 1) {
     for (let x = 0; x < 10; x += 1) {
@@ -48,7 +51,13 @@ function createGrid(gridID) {
   boards.appendChild(gridNameContainer);
 }
 
-export default function initGrid() {
+export function initGrids() {
   createGrid(1);
   createGrid(2);
+}
+
+export function toggleGrids() {
+  grids.forEach((grid) => {
+    grid.classList.toggle("disable");
+  });
 }

@@ -21,5 +21,6 @@ module.exports = {
   },
   rules: {
     "no-undef": 1,
+    "import/no-cycle": 0,
   },
 };
