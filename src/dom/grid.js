@@ -35,7 +35,6 @@ function createGrid(gridID) {
   lockedSound = new Audio("./sound/target-locked.mp3");
   const grid = document.createElement("div");
   grid.classList.add("board");
-  grid.classList.add("disable");
   grids.push(grid);
   grid.id = gridID;
   for (let y = 0; y < 10; y += 1) {

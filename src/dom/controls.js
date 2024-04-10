@@ -9,6 +9,9 @@ let player2Input = null;
 let startButton = null;
 let computerMode = null;
 
+let name1 = null;
+let name2 = null;
+
 function initStartMenu() {
   inputGroup = document.querySelector(".input-group");
 
@@ -18,6 +21,9 @@ function initStartMenu() {
   computerMode = document.getElementById("computer-mode");
 
   startButton = document.querySelector(".start-button");
+
+  name1 = document.getElementById("name1");
+  name2 = document.getElementById("name2");
 
   computerMode.addEventListener("change", (e) => {
     if (e.target.checked) {
@@ -33,6 +39,16 @@ function initStartMenu() {
     setTimeout(() => {
       inputGroup.style.display = "none";
     }, 2000);
+
+    if (player1Input.value.trim() !== "") {
+      name1.textContent = player1Input.value.trim();
+    }
+    if (player2Input.value.trim() !== "") {
+      name2.textContent = player2Input.value.trim();
+    }
+    if (computerMode.checked) {
+      name2.textContent = "Computer";
+    }
     startGame();
   });
 }
