@@ -53,6 +53,22 @@ function initStartMenu() {
   });
 }
 
+function initRandomButton() {
+  const btn = document.querySelector(".random-button");
+
+  btn.addEventListener(
+    "click",
+    (e) => {
+      e.preventDefault();
+      btn.classList.remove("random-button-click");
+      void btn.offsetWidth;
+      btn.classList.add("random-button-click");
+    },
+    false
+  );
+}
+
 export default function initControls() {
   initStartMenu();
+  initRandomButton();
 }
