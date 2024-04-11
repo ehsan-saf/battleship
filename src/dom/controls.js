@@ -1,4 +1,5 @@
-import { toggleGrids } from "./grid";
+import RandomFleet from "../game/randomfleet";
+import { printGrid, toggleGrids } from "./grid";
 import startGame from "..";
 
 let inputGroup = null;
@@ -60,9 +61,16 @@ function initRandomButton() {
     "click",
     (e) => {
       e.preventDefault();
+
+      // Play pressing animation
       btn.classList.remove("random-button-click");
       void btn.offsetWidth;
       btn.classList.add("random-button-click");
+
+      // Create random board
+      const randomFleet = new RandomFleet();
+      const board = randomFleet.randomBoard();
+      printGrid(board.grid, 1);
     },
     false
   );
