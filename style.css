@@ -68,6 +68,8 @@ body {
 
   cursor: pointer;
 
+  user-select: none;
+
   transition:
     background-color 0.2s,
     color 0.2s;
