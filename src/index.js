@@ -6,7 +6,8 @@ import { printGrid } from "./dom/grid";
 initDom();
 
 const randomFleet = new RandomFleet();
-const board = randomFleet.randomBoard();
-printGrid(board.grid, 1);
+const board1 = randomFleet.randomBoard();
+const board2 = randomFleet.randomBoard();
+printGrid(board1.grid, 1);
 
 export default function startGame() {}

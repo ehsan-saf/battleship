@@ -8,6 +8,8 @@ export default class RandomFleet {
   }
 
   randomBoard() {
+    this.board = new Gameboard();
+    this.occupied = new Set();
     const carrier = new Ship(5);
     const battleShip = new Ship(4);
     const destroyer = new Ship(3);

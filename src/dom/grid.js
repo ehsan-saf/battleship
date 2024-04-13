@@ -76,8 +76,10 @@ export function printGrid(array, gridID) {
   });
 }
 
-export function toggleGrids() {
-  grids.forEach((grid) => {
-    grid.classList.toggle("disable");
-  });
+export function enableAttackGrid(gridIndex) {
+  grids[gridIndex].classList.add("attack");
+  grids[gridIndex].classList.remove("disable");
+  const otherIndex = gridIndex === 0 ? 1 : 0;
+  grids[otherIndex].classList.remove("attack");
+  grids[otherIndex].classList.add("disable");
 }
