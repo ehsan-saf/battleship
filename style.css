@@ -32,6 +32,11 @@ body {
   opacity: 0.5;
 }
 
+.attack {
+  pointer-events: auto;
+  opacity: 1;
+}
+
 /* ---------------- Main Section ------------------- */
 
 .main {
