@@ -136,6 +136,8 @@ body {
 }
 
 .cell {
+  display: grid;
+  place-items: center;
   background-color: var(--cell-bg);
   outline: 1px solid var(--grid-border);
 }
@@ -147,6 +149,22 @@ body {
 .target-cell {
   z-index: 1;
   animation: glow 0.216s infinite alternate;
+}
+
+/* Attacked cells */
+.cell.empty-attack {
+  background-color: rgb(174, 174, 174);
+}
+
+.cell.ship-attack {
+  background-color: rgb(231, 62, 62);
+}
+
+.empty-attack,
+.ship-attack {
+  opacity: 0.7;
+  pointer-events: none;
+  user-select: none;
 }
 
 @keyframes glow {

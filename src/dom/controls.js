@@ -1,6 +1,6 @@
 import RandomFleet from "../game/randomfleet";
 import { enableAttackGrid, printGrid } from "./grid";
-import startGame from "..";
+import { startGame } from "..";
 
 let inputGroup = null;
 
@@ -35,7 +35,7 @@ function initStartMenu() {
   });
 
   startButton.addEventListener("click", () => {
-    enableAttackGrid(0);
+    enableAttackGrid(1);
     inputGroup.classList.add("hide-animation");
     setTimeout(() => {
       inputGroup.style.display = "none";

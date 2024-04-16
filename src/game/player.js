@@ -1,4 +1,4 @@
-class Player {
+export default class Player {
   constructor(enemyBoard) {
     this.enemyBoard = enemyBoard;
   }

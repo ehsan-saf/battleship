@@ -1,4 +1,4 @@
-class computer {
+export default class Computer {
   constructor(enemyBoard) {
     this.enemyBoard = enemyBoard;
     this.shots = new Set();
@@ -7,6 +7,7 @@ class computer {
   attackEnemy() {
     let [x, y] = this.attackRandom();
     this.enemyBoard.receiveAttack(x, y);
+    return [x, y];
   }
 
   hasEnemyLost() {

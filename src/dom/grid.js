@@ -1,22 +1,56 @@
+import { play, targetBoard } from "..";
+
 let lockedSound = null;
 
 const boards = document.querySelector(".grids");
 
 const grids = [];
 
-function createCell() {
-  const cell = document.createElement("div");
-  cell.classList.add("cell");
-  cell.addEventListener("mouseover", (e) => {
-    console.log(e.target);
-    e.target.classList.add("target-cell");
+function styleAttackedCell(cell, isEmpty) {
+  const symbol = cell.querySelector(".symbol");
+  if (isEmpty) {
+    cell.textContent = "⚫";
+    cell.classList.add("empty-attack");
+    //  if it's empty, disable and mark it as an empty attacked cell in css
+  } else {
+    cell.textContent = "❌";
+    cell.classList.add("ship-attack");
+    //  if there is a ship, disable and mark it as an attacked ship
+  }
+}
+
+function cellHover(e) {
+  const cell = e.target;
+  const grid = cell.closest(".grid");
+  if (grid.classList.contains("attack")) {
+    cell.classList.add("target-cell");
     lockedSound.currentTime = 0;
     lockedSound.play();
-  });
+  }
+}
+
+function attackCell(e) {
+  const cell = e.target;
+  const x = Number(cell.dataset.x);
+  const y = Number(cell.dataset.y);
+  // Check whether it's an empty cell or has a ship on it
+  const board = targetBoard();
+  styleAttackedCell(cell, board.isCellEmpty(x, y));
+  play(x, y);
+}
+
+function createCell() {
+  const cell = document.createElement("div");
+  const symbol = document.createElement("p");
+  cell.classList.add("cell");
+  symbol.classList.add("symbol");
+  cell.addEventListener("mouseover", cellHover);
   cell.addEventListener("mouseleave", (e) => {
     e.target.classList.remove("target-cell");
     lockedSound.pause();
   });
+  cell.addEventListener("click", attackCell);
+  cell.appendChild(symbol);
   return cell;
 }
 

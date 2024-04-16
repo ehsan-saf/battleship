@@ -21,6 +21,10 @@ export default class Gameboard {
     }
   }
 
+  isCellEmpty(x, y) {
+    return this.grid[x][y] === 0;
+  }
+
   allSunk() {
     const ships = Object.values(this.ships);
     return ships.every((sh) => sh.isSunk());
