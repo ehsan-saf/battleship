@@ -29,5 +29,11 @@ export function startGame() {
 }
 
 export function play(x, y) {
+  console.log(player);
+  if (turn === 1) {
+    player.attackEnemy(x, y);
+  } else {
+    computer.attackEnemy(x, y);
+  }
   turn = turn === 1 ? 2 : 1;
 }

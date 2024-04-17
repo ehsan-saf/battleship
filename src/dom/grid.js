@@ -7,7 +7,6 @@ const boards = document.querySelector(".grids");
 const grids = [];
 
 function styleAttackedCell(cell, isEmpty) {
-  const symbol = cell.querySelector(".symbol");
   if (isEmpty) {
     cell.textContent = "⚫";
     cell.classList.add("empty-attack");
@@ -35,22 +34,20 @@ function attackCell(e) {
   const y = Number(cell.dataset.y);
   // Check whether it's an empty cell or has a ship on it
   const board = targetBoard();
+  console.log(board);
   styleAttackedCell(cell, board.isCellEmpty(x, y));
   play(x, y);
 }
 
 function createCell() {
   const cell = document.createElement("div");
-  const symbol = document.createElement("p");
   cell.classList.add("cell");
-  symbol.classList.add("symbol");
   cell.addEventListener("mouseover", cellHover);
   cell.addEventListener("mouseleave", (e) => {
     e.target.classList.remove("target-cell");
     lockedSound.pause();
   });
   cell.addEventListener("click", attackCell);
-  cell.appendChild(symbol);
   return cell;
 }
 
@@ -71,8 +68,8 @@ function createGrid(gridID) {
   grid.classList.add("grid");
   grids.push(grid);
   grid.id = `grid${gridID}`;
-  for (let y = 0; y < 10; y += 1) {
-    for (let x = 0; x < 10; x += 1) {
+  for (let x = 0; x < 10; x += 1) {
+    for (let y = 0; y < 10; y += 1) {
       const cell = createCell();
       cell.dataset.x = x;
       cell.dataset.y = y;
@@ -98,7 +95,6 @@ export function printGrid(array, gridID) {
   let x = 0;
   let y = 0;
   cells.forEach((cell) => {
-    console.log(`${x}:${y}`);
     if (array[x][y] !== 0) {
       cell.classList.add("ship");
     }

@@ -22,6 +22,8 @@ export default class Gameboard {
   }
 
   isCellEmpty(x, y) {
+    console.log(`Is this coordinate empty ? -> x: ${x} y: ${y}`);
+    console.log(this.grid[x][y]);
     return this.grid[x][y] === 0;
   }
 
