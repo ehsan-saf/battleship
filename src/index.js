@@ -1,6 +1,6 @@
 import initDom from "./dom/general";
 import RandomFleet from "./game/randomfleet";
-import { printGrid } from "./dom/grid";
+import { enableAttackGrid, printGrid } from "./dom/grid";
 import Player from "./game/player";
 import Computer from "./game/computer";
 
@@ -16,9 +16,9 @@ let computer = null;
 
 export function targetBoard() {
   if (turn === 1) {
-    return board2;
+    return player.enemyBoard;
   }
-  return board1;
+  return computer.enemyBoard;
 }
 
 printGrid(board1.grid, 1);
@@ -35,5 +35,6 @@ export function play(x, y) {
   } else {
     computer.attackEnemy(x, y);
   }
+  enableAttackGrid(turn - 1);
   turn = turn === 1 ? 2 : 1;
 }

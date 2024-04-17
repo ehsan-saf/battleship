@@ -8,6 +8,7 @@ export default class RandomFleet {
   }
 
   randomBoard() {
+    console.log(":::::Random Fleet Created:::::");
     this.board = new Gameboard();
     this.occupied = new Set();
     const carrier = new Ship(5);
