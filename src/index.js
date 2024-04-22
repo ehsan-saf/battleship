@@ -1,18 +1,31 @@
 import initDom from "./dom/general";
 import RandomFleet from "./game/randomfleet";
-import { enableAttackGrid, printGrid } from "./dom/grid";
+import {
+  disableComputerAttack,
+  enableComputerAttack,
+  printGrid,
+  styleAttackedCell,
+} from "./dom/grid";
 import Player from "./game/player";
 import Computer from "./game/computer";
 
 initDom();
 
 const randomFleet = new RandomFleet();
-const board1 = randomFleet.randomBoard();
-const board2 = randomFleet.randomBoard();
+let board1 = randomFleet.randomBoard();
+let board2 = randomFleet.randomBoard();
 let turn = 1;
 
 let player = null;
 let computer = null;
+
+export function assignBoard(boardNumber, board) {
+  if (boardNumber === 1) {
+    board1 = board;
+  } else {
+    board2 = board;
+  }
+}
 
 export function targetBoard() {
   if (turn === 1) {
@@ -29,12 +42,14 @@ export function startGame() {
 }
 
 export function play(x, y) {
-  console.log(player);
-  if (turn === 1) {
-    player.attackEnemy(x, y);
-  } else {
-    computer.attackEnemy(x, y);
-  }
-  enableAttackGrid(turn - 1);
-  turn = turn === 1 ? 2 : 1;
+  // The player attacks
+  styleAttackedCell(2, x, y, player.enemyBoard.isCellEmpty(x, y));
+  player.attackEnemy(x, y);
+  // Computer attacks
+  enableComputerAttack();
+  setTimeout(() => {
+    const [xc, yc] = computer.attackEnemy();
+    styleAttackedCell(1, xc, yc, computer.enemyBoard.isCellEmpty(xc, yc));
+    disableComputerAttack();
+  }, 1500);
 }

@@ -22,9 +22,11 @@ export default class Gameboard {
   }
 
   isCellEmpty(x, y) {
-    console.log(`Is this coordinate empty ? -> x: ${x} y: ${y}`);
+    console.table(this.grid);
+    console.log(this.grid);
+    console.log(`Attacked x:${x}  y:${y}`);
     console.log(this.grid[x][y]);
-    return this.grid[x][y] === 0;
+    return this.grid[x][y] === 0 || this.grid[x][y] === 1;
   }
 
   allSunk() {

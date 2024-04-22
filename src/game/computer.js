@@ -5,7 +5,7 @@ export default class Computer {
   }
 
   attackEnemy() {
-    let [x, y] = this.attackRandom();
+    const [x, y] = this.attackRandom();
     this.enemyBoard.receiveAttack(x, y);
     return [x, y];
   }

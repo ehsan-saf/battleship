@@ -1,4 +1,4 @@
-import { play, targetBoard } from "..";
+import { play } from "..";
 
 let lockedSound = null;
 
@@ -6,7 +6,10 @@ const boards = document.querySelector(".grids");
 
 const grids = [];
 
-function styleAttackedCell(cell, isEmpty) {
+export function styleAttackedCell(gridNum, x, y, isEmpty) {
+  const cell = document.querySelector(
+    `#grid${gridNum} .cell[data-x="${x}"][data-y="${y}"]`
+  );
   if (isEmpty) {
     cell.textContent = "⚫";
     cell.classList.add("empty-attack");
@@ -21,7 +24,7 @@ function styleAttackedCell(cell, isEmpty) {
 function cellHover(e) {
   const cell = e.target;
   const grid = cell.closest(".grid");
-  if (grid.classList.contains("attack")) {
+  if (grid.classList.contains("active")) {
     cell.classList.add("target-cell");
     lockedSound.currentTime = 0;
     lockedSound.play();
@@ -32,10 +35,6 @@ function attackCell(e) {
   const cell = e.target;
   const x = Number(cell.dataset.x);
   const y = Number(cell.dataset.y);
-  // Check whether it's an empty cell or has a ship on it
-  const board = targetBoard();
-  console.log(board);
-  styleAttackedCell(cell, board.isCellEmpty(x, y));
   play(x, y);
 }
 
@@ -87,6 +86,7 @@ export function initGrids() {
 }
 
 export function printGrid(array, gridID) {
+  console.table(array);
   const grid = document.getElementById(`grid${gridID}`);
   const cells = grid.querySelectorAll(".cell");
   cells.forEach((cell) => {
@@ -112,4 +112,16 @@ export function enableAttackGrid(gridIndex) {
   const otherIndex = gridIndex === 0 ? 1 : 0;
   grids[otherIndex].classList.remove("attack");
   grids[otherIndex].classList.add("disable");
+}
+
+export function enableComputerAttack() {
+  grids[1].classList.add("disable");
+  grids[0].classList.add("computer-attack");
+  grids[0].classList.remove("disable");
+}
+
+export function disableComputerAttack() {
+  grids[1].classList.remove("disable");
+  grids[0].classList.remove("computer-attack");
+  grids[0].classList.add("disable");
 }

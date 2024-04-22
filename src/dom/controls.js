@@ -1,6 +1,6 @@
 import RandomFleet from "../game/randomfleet";
-import { enableAttackGrid, printGrid } from "./grid";
-import { startGame } from "..";
+import { disableComputerAttack, printGrid } from "./grid";
+import { startGame, assignBoard } from "..";
 
 let inputGroup = null;
 
@@ -35,7 +35,7 @@ function initStartMenu() {
   });
 
   startButton.addEventListener("click", () => {
-    enableAttackGrid(1);
+    disableComputerAttack();
     inputGroup.classList.add("hide-animation");
     setTimeout(() => {
       inputGroup.style.display = "none";
@@ -70,6 +70,7 @@ function initRandomButton() {
       // Create random board
       const randomFleet = new RandomFleet();
       const board = randomFleet.randomBoard();
+      assignBoard(1, board);
       printGrid(board.grid, 1);
     },
     false
