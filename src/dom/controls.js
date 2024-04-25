@@ -8,6 +8,7 @@ let player1Input = null;
 let player2Input = null;
 
 let startButton = null;
+let randomButton = null;
 let computerMode = null;
 
 let name1 = null;
@@ -37,8 +38,10 @@ function initStartMenu() {
   startButton.addEventListener("click", () => {
     disableComputerAttack();
     inputGroup.classList.add("hide-animation");
+    randomButton.classList.add("hide-animation");
     setTimeout(() => {
       inputGroup.style.display = "none";
+      randomButton.style.display = "none";
     }, 2000);
 
     if (player1Input.value.trim() !== "") {
@@ -55,17 +58,17 @@ function initStartMenu() {
 }
 
 function initRandomButton() {
-  const btn = document.querySelector(".random-button");
+  randomButton = document.querySelector(".random-button");
 
-  btn.addEventListener(
+  randomButton.addEventListener(
     "click",
     (e) => {
       e.preventDefault();
 
       // Play pressing animation
-      btn.classList.remove("random-button-click");
-      void btn.offsetWidth;
-      btn.classList.add("random-button-click");
+      randomButton.classList.remove("random-button-click");
+      void randomButton.offsetWidth;
+      randomButton.classList.add("random-button-click");
 
       // Create random board
       const randomFleet = new RandomFleet();
