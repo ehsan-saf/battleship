@@ -1,5 +1,6 @@
 export default class Computer {
-  constructor(enemyBoard) {
+  constructor(name, enemyBoard) {
+    this.name = name;
     this.enemyBoard = enemyBoard;
     this.shots = new Set();
   }

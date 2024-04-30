@@ -8,6 +8,7 @@ import {
 } from "./dom/grid";
 import Player from "./game/player";
 import Computer from "./game/computer";
+import { setTurnInfo } from "./dom/info";
 
 initDom();
 
@@ -36,20 +37,31 @@ export function targetBoard() {
 
 printGrid(board1.grid, 1);
 
-export function startGame() {
-  player = new Player(board2);
-  computer = new Computer(board1);
+export function startGame(name1, name2) {
+  player = new Player(name1, board2);
+  computer = new Computer(name2, board1);
 }
 
 export function play(x, y) {
+  setTurnInfo(computer);
   // The player attacks
   styleAttackedCell(2, x, y, player.enemyBoard.isCellEmpty(x, y));
   player.attackEnemy(x, y);
-  // Computer attacks
-  enableComputerAttack();
-  setTimeout(() => {
-    const [xc, yc] = computer.attackEnemy();
-    styleAttackedCell(1, xc, yc, computer.enemyBoard.isCellEmpty(xc, yc));
-    disableComputerAttack();
-  }, 1500);
+  if (player.enemyBoard.allSunk()) {
+    console.log("All Computer ships have been sunk!");
+  } else {
+    // Computer attacks
+    enableComputerAttack();
+    setTimeout(() => {
+      const [xc, yc] = computer.attackEnemy();
+      styleAttackedCell(1, xc, yc, computer.enemyBoard.isCellEmpty(xc, yc));
+      disableComputerAttack();
+      setTurnInfo(player);
+    }, 1500);
+    if (computer.enemyBoard.allSunk()) {
+      console.log("All player's ships have been sunk!");
+    }
+  }
+
+  function gameOver(winnerPlayer) {}
 }

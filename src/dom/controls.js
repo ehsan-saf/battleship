@@ -42,7 +42,7 @@ function initStartMenu() {
     setTimeout(() => {
       inputGroup.style.display = "none";
       randomButton.style.display = "none";
-    }, 2000);
+    }, 1300);
 
     if (player1Input.value.trim() !== "") {
       name1.textContent = player1Input.value.trim();
@@ -53,7 +53,7 @@ function initStartMenu() {
     if (computerMode.checked) {
       name2.textContent = "Computer";
     }
-    startGame();
+    startGame(name1.textContent, name2.textContent);
   });
 }
 

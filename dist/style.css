@@ -208,7 +208,8 @@ body {
 
 .hide-animation {
   opacity: 0;
-  animation: hide 2s;
+  pointer-events: none;
+  animation: hide 1.3s;
 }
 
 .show-animation {
