@@ -42,6 +42,10 @@ body {
   opacity: 1;
 }
 
+.unclickable {
+  pointer-events: none;
+}
+
 /* ---------------- Main Section ------------------- */
 
 .main {
@@ -61,6 +65,10 @@ body {
   background-color: rgb(46, 94, 218);
   font-size: 18px;
   padding: 10px;
+}
+
+.win-message {
+  background-color: rgb(25 210 55);
 }
 
 /* Random button */
