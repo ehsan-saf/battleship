@@ -33,4 +33,11 @@ export default class Gameboard {
     const ships = Object.values(this.ships);
     return ships.every((sh) => sh.isSunk());
   }
+
+  static disableGridClick() {
+    const grids = document.querySelectorAll(".grid");
+    grids.forEach((g) => {
+      g.style.pointerEvents = "none";
+    });
+  }
 }
