@@ -24,6 +24,7 @@ export function styleAttackedCell(gridNum, x, y, isEmpty) {
 function cellHover(e) {
   const cell = e.target;
   const grid = cell.closest(".grid");
+  console.log(grid);
   if (grid.classList.contains("active")) {
     cell.classList.add("target-cell");
     lockedSound.currentTime = 0;
@@ -108,9 +109,11 @@ export function printGrid(array, gridID) {
 
 export function enableAttackGrid(gridIndex) {
   grids[gridIndex].classList.add("attack");
+  grids[gridIndex].classList.add("active");
   grids[gridIndex].classList.remove("disable");
   const otherIndex = gridIndex === 0 ? 1 : 0;
   grids[otherIndex].classList.remove("attack");
+  grids[otherIndex].classList.remove("active");
   grids[otherIndex].classList.add("disable");
 }
 
@@ -122,6 +125,7 @@ export function enableComputerAttack() {
 
 export function disableComputerAttack() {
   grids[1].classList.remove("disable");
+  grids[1].classList.add("active");
   grids[0].classList.remove("computer-attack");
   grids[0].classList.add("disable");
 }

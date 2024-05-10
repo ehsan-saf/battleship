@@ -64,7 +64,7 @@ export function play(x, y) {
       styleAttackedCell(1, xc, yc, computer.enemyBoard.isCellEmpty(xc, yc));
       disableComputerAttack();
       setTurnInfo(player);
-    }, 1);
+    }, 1000);
     if (computer.enemyBoard.allSunk()) {
       endGame(computer);
       console.log("All player's ships have been sunk!");
