@@ -52,14 +52,14 @@ function createCell() {
 }
 
 function createGridContainer(gridID) {
-  const gridName = document.createElement("div");
+  const gridContainer = document.createElement("div");
   const playerName = document.createElement("p");
-  gridName.classList.add("grid-name");
+  gridContainer.classList.add("grid-container");
   playerName.classList.add("player-name");
   playerName.id = `name${gridID}`;
   playerName.textContent = `Player ${gridID}`;
-  gridName.appendChild(playerName);
-  return gridName;
+  gridContainer.appendChild(playerName);
+  return gridContainer;
 }
 
 function createGrid(gridID) {
@@ -76,9 +76,9 @@ function createGrid(gridID) {
       grid.appendChild(cell);
     }
   }
-  const gridNameContainer = createGridContainer(gridID);
-  gridNameContainer.appendChild(grid);
-  boards.appendChild(gridNameContainer);
+  const gridContainerContainer = createGridContainer(gridID);
+  gridContainerContainer.appendChild(grid);
+  boards.appendChild(gridContainerContainer);
 }
 
 export function initGrids() {
