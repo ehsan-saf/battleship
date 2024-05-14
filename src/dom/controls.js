@@ -9,6 +9,7 @@ let player2Input = null;
 
 let startButton = null;
 let randomButton = null;
+let restartButton = null;
 let computerMode = null;
 
 let name1 = null;
@@ -23,6 +24,8 @@ function initStartMenu() {
   computerMode = document.getElementById("computer-mode");
 
   startButton = document.querySelector(".start-button");
+
+  restartButton = document.querySelector(".restart-button");
 
   name1 = document.getElementById("name1");
   name2 = document.getElementById("name2");
@@ -42,6 +45,7 @@ function initStartMenu() {
     setTimeout(() => {
       inputGroup.style.display = "none";
       randomButton.style.display = "none";
+      restartButton.style.display = "block";
     }, 1300);
 
     if (player1Input.value.trim() !== "") {
