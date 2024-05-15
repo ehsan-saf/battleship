@@ -4,7 +4,7 @@ let lockedSound = null;
 
 const boards = document.querySelector(".grids");
 
-const grids = [];
+let grids = [];
 
 export function styleAttackedCell(gridNum, x, y, isEmpty) {
   const cell = document.querySelector(
@@ -76,9 +76,9 @@ function createGrid(gridID) {
       grid.appendChild(cell);
     }
   }
-  const gridContainerContainer = createGridContainer(gridID);
-  gridContainerContainer.appendChild(grid);
-  boards.appendChild(gridContainerContainer);
+  const gridContainer = createGridContainer(gridID);
+  gridContainer.appendChild(grid);
+  boards.appendChild(gridContainer);
 }
 
 export function initGrids() {
@@ -128,4 +128,17 @@ export function disableComputerAttack() {
   grids[1].classList.add("active");
   grids[0].classList.remove("computer-attack");
   grids[0].classList.add("disable");
+}
+
+export function clearGridClass() {
+  grids[0].className = "grid";
+  grids[1].className = "grid";
+}
+
+export function restartGrids() {
+  boards.innerHTML = "";
+  grids = [];
+  initGrids();
+  grids[0].classList.add("disable");
+  grids[1].classList.add("disable");
 }

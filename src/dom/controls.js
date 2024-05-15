@@ -1,5 +1,5 @@
 import RandomFleet from "../game/randomfleet";
-import { disableComputerAttack, printGrid } from "./grid";
+import { clearGridClass, printGrid, restartGrids } from "./grid";
 import { startGame, assignBoard } from "..";
 
 let inputGroup = null;
@@ -14,6 +14,26 @@ let computerMode = null;
 
 let name1 = null;
 let name2 = null;
+
+function restartInputs() {
+  player1Input.textContent = "";
+  player2Input.textContent = "";
+  computerMode.checked = false;
+
+  restartButton.classList.add("hide-animation");
+  inputGroup.classList.remove("hide-animation");
+  randomButton.classList.remove("hide-animation");
+  restartButton.style.display = "none";
+  inputGroup.style.display = "grid";
+  randomButton.style.display = "unset";
+
+  setTimeout(() => {}, 1300);
+}
+
+function restartGame() {
+  restartInputs();
+  restartGrids();
+}
 
 function initStartMenu() {
   inputGroup = document.querySelector(".input-group");
@@ -39,7 +59,8 @@ function initStartMenu() {
   });
 
   startButton.addEventListener("click", () => {
-    disableComputerAttack();
+    clearGridClass();
+    restartButton.classList.remove("hide-animation");
     inputGroup.classList.add("hide-animation");
     randomButton.classList.add("hide-animation");
     setTimeout(() => {
@@ -59,6 +80,8 @@ function initStartMenu() {
     }
     startGame(name1.textContent, name2.textContent);
   });
+
+  restartButton.addEventListener("click", restartGame);
 }
 
 function initRandomButton() {
