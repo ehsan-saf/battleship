@@ -1,4 +1,4 @@
-import { play } from "..";
+import { play, generateRandomBoards } from "..";
 
 let lockedSound = null;
 
@@ -141,4 +141,6 @@ export function restartGrids() {
   initGrids();
   grids[0].classList.add("disable");
   grids[1].classList.add("disable");
+  let [board1, board2] = generateRandomBoards();
+  printGrid(board1.grid, 1);
 }
