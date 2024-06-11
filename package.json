@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack",
-    "start": "webpack --watch"
+    "start": "webpack --watch",
+    "update-page": "git subtree push --prefix dist origin gh-pages"
   },
   "keywords": [],
   "author": "",
