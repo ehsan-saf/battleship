@@ -1,5 +1,5 @@
 import RandomFleet from "../game/randomfleet";
-import { disableComputerAttack, printGrid } from "./grid";
+import { clearGridClass, printGrid, restartGrids } from "./grid";
 import { startGame, assignBoard } from "..";
 
 let inputGroup = null;
@@ -9,10 +9,31 @@ let player2Input = null;
 
 let startButton = null;
 let randomButton = null;
+let restartButton = null;
 let computerMode = null;
 
 let name1 = null;
 let name2 = null;
+
+function restartInputs() {
+  player1Input.textContent = "";
+  player2Input.textContent = "";
+  computerMode.checked = false;
+
+  restartButton.classList.add("hide-animation");
+  inputGroup.classList.remove("hide-animation");
+  randomButton.classList.remove("hide-animation");
+  restartButton.style.display = "none";
+  inputGroup.style.display = "grid";
+  randomButton.style.display = "unset";
+
+  setTimeout(() => {}, 1300);
+}
+
+function restartGame() {
+  restartInputs();
+  restartGrids();
+}
 
 function initStartMenu() {
   inputGroup = document.querySelector(".input-group");
@@ -23,6 +44,8 @@ function initStartMenu() {
   computerMode = document.getElementById("computer-mode");
 
   startButton = document.querySelector(".start-button");
+
+  restartButton = document.querySelector(".restart-button");
 
   name1 = document.getElementById("name1");
   name2 = document.getElementById("name2");
@@ -36,12 +59,14 @@ function initStartMenu() {
   });
 
   startButton.addEventListener("click", () => {
-    disableComputerAttack();
+    clearGridClass();
+    restartButton.classList.remove("hide-animation");
     inputGroup.classList.add("hide-animation");
     randomButton.classList.add("hide-animation");
     setTimeout(() => {
       inputGroup.style.display = "none";
       randomButton.style.display = "none";
+      restartButton.style.display = "block";
     }, 1300);
 
     if (player1Input.value.trim() !== "") {
@@ -55,6 +80,8 @@ function initStartMenu() {
     }
     startGame(name1.textContent, name2.textContent);
   });
+
+  restartButton.addEventListener("click", restartGame);
 }
 
 function initRandomButton() {

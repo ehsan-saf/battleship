@@ -1,10 +1,10 @@
-import { play } from "..";
+import { play, generateRandomBoards } from "..";
 
 let lockedSound = null;
 
 const boards = document.querySelector(".grids");
 
-const grids = [];
+let grids = [];
 
 export function styleAttackedCell(gridNum, x, y, isEmpty) {
   const cell = document.querySelector(
@@ -52,14 +52,14 @@ function createCell() {
 }
 
 function createGridContainer(gridID) {
-  const gridName = document.createElement("div");
+  const gridContainer = document.createElement("div");
   const playerName = document.createElement("p");
-  gridName.classList.add("grid-name");
+  gridContainer.classList.add("grid-container");
   playerName.classList.add("player-name");
   playerName.id = `name${gridID}`;
   playerName.textContent = `Player ${gridID}`;
-  gridName.appendChild(playerName);
-  return gridName;
+  gridContainer.appendChild(playerName);
+  return gridContainer;
 }
 
 function createGrid(gridID) {
@@ -76,9 +76,9 @@ function createGrid(gridID) {
       grid.appendChild(cell);
     }
   }
-  const gridNameContainer = createGridContainer(gridID);
-  gridNameContainer.appendChild(grid);
-  boards.appendChild(gridNameContainer);
+  const gridContainer = createGridContainer(gridID);
+  gridContainer.appendChild(grid);
+  boards.appendChild(gridContainer);
 }
 
 export function initGrids() {
@@ -128,4 +128,19 @@ export function disableComputerAttack() {
   grids[1].classList.add("active");
   grids[0].classList.remove("computer-attack");
   grids[0].classList.add("disable");
+}
+
+export function clearGridClass() {
+  grids[0].className = "grid";
+  grids[1].className = "grid";
+}
+
+export function restartGrids() {
+  boards.innerHTML = "";
+  grids = [];
+  initGrids();
+  grids[0].classList.add("disable");
+  grids[1].classList.add("disable");
+  let [board1, board2] = generateRandomBoards();
+  printGrid(board1.grid, 1);
 }

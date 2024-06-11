@@ -13,9 +13,19 @@ import Gameboard from "./game/gameboard";
 
 initDom();
 
-const randomFleet = new RandomFleet();
-let board1 = randomFleet.randomBoard();
-let board2 = randomFleet.randomBoard();
+let board1 = null;
+let board2 = null;
+
+export function generateRandomBoards() {
+  const randomFleet = new RandomFleet();
+  board1 = randomFleet.randomBoard();
+  board2 = randomFleet.randomBoard();
+  printGrid(board1.grid, 1);
+  return [board1, board2];
+}
+
+generateRandomBoards();
+
 let turn = 1;
 
 let player = null;
@@ -35,8 +45,6 @@ export function targetBoard() {
   }
   return computer.enemyBoard;
 }
-
-printGrid(board1.grid, 1);
 
 export function startGame(name1, name2) {
   player = new Player(name1, board2);
